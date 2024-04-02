@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -34,6 +35,7 @@ fun ChannelItem(channelListItem: ChannelListItem, onClick: (ChannelListItem) -> 
         Card(elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
             modifier = Modifier
                 .padding(4.dp)
+                .testTag("channelItem")
                 .fillMaxWidth(1f)
                 .clickable {
                     onClick.invoke(channelListItem)
@@ -51,13 +53,15 @@ fun ChannelItem(channelListItem: ChannelListItem, onClick: (ChannelListItem) -> 
                     error = painterResource(id = R.drawable.ic_error),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(250.dp),
+                        .height(250.dp)
+                        .testTag("channelImage"),
                     contentScale = ContentScale.FillWidth
                 )
 
                 Text(
                     text = channelListItem.title!!,
-                    modifier = Modifier.padding(8.dp),
+                    modifier = Modifier.padding(8.dp).
+                    testTag("channelTitle"),
                     fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.height(10.dp))

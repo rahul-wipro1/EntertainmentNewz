@@ -72,9 +72,10 @@ fun ShowLoading() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        CircularProgressIndicator()
+        CircularProgressIndicator(modifier = Modifier.testTag("circular_progress"))
     }
 }
+
 /**
  * This fun is used to show the Error
  */
