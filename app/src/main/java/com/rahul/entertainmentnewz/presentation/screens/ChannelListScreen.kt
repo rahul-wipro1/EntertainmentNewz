@@ -48,10 +48,10 @@ fun DisplayTheContent(channelListItem: List<ChannelListItem>, navController: Nav
     Column(modifier = Modifier.padding(12.dp)) {
         LazyColumn(modifier = Modifier.testTag("channel_list")) {
             items(channelListItem) {
-                ChannelItem(it) {channelItem->
+                ChannelItem(it) {
                     navController.currentBackStackEntry?.savedStateHandle?.set(
                         key = "channelItem",
-                        value = channelItem
+                        value = it
                     )
                     navController.navigate(NavigationItem.ChannelDetail.route)
                 }
