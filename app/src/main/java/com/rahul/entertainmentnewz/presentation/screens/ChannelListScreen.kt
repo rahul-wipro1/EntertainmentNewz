@@ -9,6 +9,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,7 +27,7 @@ import com.rahul.entertainmentnewz.presentation.viewmodel.ChannelListViewModel
 fun ChannelListScreen(
     navController: NavController, viewModelItem: ChannelListViewModel = hiltViewModel()
 ) {
-    val result = viewModelItem.channelListState.value
+    val result by viewModelItem.channelListState.collectAsState()
 
     if (result.isLoading) {
         ShowLoading()

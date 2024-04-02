@@ -1,7 +1,5 @@
 package com.rahul.entertainmentnewz.presentation.viewmodel
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rahul.entertainmentnewz.domain.usecase.ChannelListUseCase
@@ -9,6 +7,8 @@ import com.rahul.entertainmentnewz.presentation.stateholder.ChannelListStateHold
 import com.rahul.entertainmentnewz.utils.Constant.UNEXPECTED_ERROR
 import com.rahul.entertainmentnewz.utils.ResponseState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,9 +19,8 @@ import javax.inject.Inject
 class ChannelListViewModel @Inject constructor(
     private val channelListUseCase: ChannelListUseCase,
 ) : ViewModel() {
-
-    private val _channelListValue = mutableStateOf(ChannelListStateHolder())
-    var channelListState: State<ChannelListStateHolder> = _channelListValue
+    private val _channelListValue = MutableStateFlow(ChannelListStateHolder())
+    var channelListState = _channelListValue.asStateFlow()
 
     init {
         getAllChannelList()

@@ -38,6 +38,7 @@ class ChannelListUseCaseTest {
         clearAllMocks()
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `invoke loading by success`() = runTest{
         coEvery { channelRepository.getAllChannels()} returns listOf(ChannelsDTOItem("11-11-2023","disc","icon","pic","title"))
@@ -54,6 +55,7 @@ class ChannelListUseCaseTest {
         Assert.assertEquals(1,successState.data?.size)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun `invoke loading by error`() = runTest{
         coEvery { channelRepository.getAllChannels()} throws IOException()
