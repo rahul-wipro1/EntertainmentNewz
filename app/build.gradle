@@ -98,6 +98,12 @@ dependencies {
 
     //Coil Dependency
     implementation "io.coil-kt:coil-compose:$coil_version"
+
+    //MockK Testing Dependency
+    testImplementation "io.mockk:mockk-android:$mockkVersion"
+    testImplementation "io.mockk:mockk-agent:$mockkVersion"
+    androidTestImplementation "io.mockk:mockk-android:$mockkVersion"
+    androidTestImplementation "io.mockk:mockk-agent:$mockkVersion"
 }
 
 // Allow references to generated code
