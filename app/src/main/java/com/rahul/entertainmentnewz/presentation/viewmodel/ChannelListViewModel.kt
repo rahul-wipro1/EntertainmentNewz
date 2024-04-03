@@ -7,9 +7,11 @@ import com.rahul.entertainmentnewz.presentation.stateholder.ChannelListStateHold
 import com.rahul.entertainmentnewz.utils.Constant.UNEXPECTED_ERROR
 import com.rahul.entertainmentnewz.utils.ResponseState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /** This ChannelList View model is used to fetch
@@ -27,21 +29,23 @@ class ChannelListViewModel @Inject constructor(
     }
 
     /** This function is used to get the channel list */
-    fun getAllChannelList() = viewModelScope.launch {
+    fun getAllChannelList() = viewModelScope.launch(Dispatchers.IO) {
         channelListUseCase().collect {
-            when (it) {
-                is ResponseState.Loading -> {
-                    _channelListValue.value = ChannelListStateHolder(isLoading = true)
-                }
+            withContext(Dispatchers.Main) {
+                when (it) {
+                    is ResponseState.Loading -> {
+                        _channelListValue.value = ChannelListStateHolder(isLoading = true)
+                    }
 
-                is ResponseState.Success -> {
-                    _channelListValue.value =
-                        ChannelListStateHolder(channelListItem = it.data ?: emptyList())
-                }
+                    is ResponseState.Success -> {
+                        _channelListValue.value =
+                            ChannelListStateHolder(channelListItem = it.data ?: emptyList())
+                    }
 
-                is ResponseState.Error -> {
-                    _channelListValue.value =
-                        ChannelListStateHolder(error = it.message ?: UNEXPECTED_ERROR)
+                    is ResponseState.Error -> {
+                        _channelListValue.value =
+                            ChannelListStateHolder(error = it.message ?: UNEXPECTED_ERROR)
+                    }
                 }
             }
         }
