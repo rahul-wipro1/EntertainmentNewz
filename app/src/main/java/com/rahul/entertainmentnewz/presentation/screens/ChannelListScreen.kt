@@ -15,13 +15,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.rahul.entertainmentnewz.R
 import com.rahul.entertainmentnewz.domain.model.ChannelListItem
 import com.rahul.entertainmentnewz.presentation.component.ChannelItem
 import com.rahul.entertainmentnewz.presentation.navigation.NavigationItem
 import com.rahul.entertainmentnewz.presentation.viewmodel.ChannelListViewModel
+import com.rahul.entertainmentnewz.ui.theme.spacing
+import com.rahul.entertainmentnewz.utils.Constant.ONE_F
 
 @Composable
 fun ChannelListScreen(
@@ -47,13 +50,12 @@ fun ChannelListScreen(
  */
 @Composable
 fun DisplayTheContent(channelListItem: List<ChannelListItem>, navController: NavController) {
-    Column(modifier = Modifier.padding(12.dp)) {
-        LazyColumn(modifier = Modifier.testTag("channel_list")) {
+    Column(modifier = Modifier.padding(spacing.twelve_dp)) {
+        LazyColumn(modifier = Modifier.testTag(stringResource(R.string.channel_list))) {
             items(channelListItem) {
                 ChannelItem(it) {
                     navController.currentBackStackEntry?.savedStateHandle?.set(
-                        key = "channelItem",
-                        value = it
+                        key = "channelItem", value = it
                     )
                     navController.navigate(NavigationItem.ChannelDetail.route)
                 }
@@ -68,11 +70,11 @@ fun DisplayTheContent(channelListItem: List<ChannelListItem>, navController: Nav
 @Composable
 fun ShowLoading() {
     Column(
-        modifier = Modifier.fillMaxSize(1f),
+        modifier = Modifier.fillMaxSize(ONE_F),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        CircularProgressIndicator(modifier = Modifier.testTag("circular_progress"))
+        CircularProgressIndicator(modifier = Modifier.testTag(stringResource(R.string.circular_progress)))
     }
 }
 
@@ -82,7 +84,7 @@ fun ShowLoading() {
 @Composable
 fun ShowError(error: String) {
     Column(
-        modifier = Modifier.fillMaxSize(1f),
+        modifier = Modifier.fillMaxSize(ONE_F),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {

@@ -36,6 +36,7 @@ class ChannelRepositoryImplTest {
         clearAllMocks()
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun getAllChannels() = runTest {
         val mockList = listOf(ChannelsDTOItem("11-11-2023", "disc", "icon", "pic", "title"))

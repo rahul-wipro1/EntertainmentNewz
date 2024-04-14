@@ -6,6 +6,8 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import com.rahul.entertainmentnewz.domain.model.ChannelListItem
 import com.rahul.entertainmentnewz.presentation.component.ChannelItem
+import com.rahul.entertainmentnewz.utils.Constant.CARTOON_NETWORK
+import com.rahul.entertainmentnewz.utils.Constant.CHANNEL_ITEM
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -33,11 +35,11 @@ class ChannelItemShould {
 
     @Test
     fun displayItem() {
-        composeRule.onNodeWithTag("channelItem").assertIsDisplayed()
+        composeRule.onNodeWithTag(CHANNEL_ITEM).assertIsDisplayed()
     }
 
     @Test
     fun containTitle() {
-        composeRule.onNodeWithText("Cartoon Network")
+        composeRule.onNodeWithText(CARTOON_NETWORK).assertIsDisplayed()
     }
 }

@@ -6,6 +6,13 @@ import androidx.compose.ui.test.onChildAt
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import com.rahul.entertainmentnewz.MainActivity
+import com.rahul.entertainmentnewz.utils.Constant.CHANNEL_IMAGE
+import com.rahul.entertainmentnewz.utils.Constant.CHANNEL_LIST
+import com.rahul.entertainmentnewz.utils.Constant.DELAY_2000
+import com.rahul.entertainmentnewz.utils.Constant.DELAY_3000
+import com.rahul.entertainmentnewz.utils.Constant.DISC
+import com.rahul.entertainmentnewz.utils.Constant.TITLE
+import com.rahul.entertainmentnewz.utils.Constant.ZERO
 import org.junit.Rule
 import org.junit.Test
 
@@ -17,27 +24,27 @@ class ChannelDetailFeature {
     @Test
     fun validateImageIsVisible() {
         composeRule.apply {
-            Thread.sleep(3000L)
-            onNodeWithTag("channel_list").onChildAt(0).performClick()
-            onNodeWithTag("channel_image").assertIsDisplayed()
+            Thread.sleep(DELAY_3000)
+            onNodeWithTag(CHANNEL_LIST).onChildAt(ZERO).performClick()
+            onNodeWithTag(CHANNEL_IMAGE).assertIsDisplayed()
         }
     }
 
     @Test
     fun validateTitle() {
         composeRule.apply {
-            Thread.sleep(2000L)
-            onNodeWithTag("channel_list").onChildAt(0).performClick()
-            onNodeWithTag("title").assertIsDisplayed()
+            Thread.sleep(DELAY_2000)
+            onNodeWithTag(CHANNEL_LIST).onChildAt(ZERO).performClick()
+            onNodeWithTag(TITLE).assertIsDisplayed()
         }
     }
 
     @Test
     fun validateDisc() {
         composeRule.apply {
-            Thread.sleep(2000L)
-            onNodeWithTag("channel_list").onChildAt(0).performClick()
-            onNodeWithTag("disc").assertIsDisplayed()
+            Thread.sleep(DELAY_2000)
+            onNodeWithTag(CHANNEL_LIST).onChildAt(ZERO).performClick()
+            onNodeWithTag(DISC).assertIsDisplayed()
         }
     }
 }

@@ -12,20 +12,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.rahul.entertainmentnewz.R
 import com.rahul.entertainmentnewz.domain.model.ChannelListItem
+import com.rahul.entertainmentnewz.ui.theme.spacing
 
 @Composable
 fun ChannelDetailScreen(result: ChannelListItem?) {
-    Column(modifier = Modifier.padding(10.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = Modifier.padding(spacing.ten_dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
-            text = result?.title ?: "Title",
+            text = result?.title ?: stringResource(R.string.title),
             modifier = Modifier
-                .padding(4.dp)
-                .testTag("title"),
+                .padding(spacing.four_dp)
+                .testTag(stringResource(R.string.title)),
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Bold
         )
@@ -36,16 +40,16 @@ fun ChannelDetailScreen(result: ChannelListItem?) {
             error = painterResource(id = R.drawable.ic_error),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(350.dp)
-                .testTag("channel_image"),
+                .height(spacing.threeFifty_dp)
+                .testTag(stringResource(R.string.channel_image)),
             contentScale = ContentScale.FillWidth
         )
 
         Text(
-            text = result?.discription ?: "No Discription",
+            text = result?.discription ?: stringResource(R.string.no_description),
             modifier = Modifier
-                .padding(4.dp)
-                .testTag("disc")
+                .padding(spacing.four_dp)
+                .testTag(stringResource(R.string.disc))
         )
     }
 }

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">EntertainmentNewz</string>
+    <string name="title">Title</string>
+    <string name="channel_item">channel Item</string>
+    <string name="channel_image">channel Image</string>
+    <string name="channel_title">channel Title</string>
+    <string name="channel_list">channel List</string>
+    <string name="no_description">No Description</string>
+    <string name="disc">disc</string>
+    <string name="circular_progress">circular_progress</string>
 </resources>

@@ -17,11 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.rahul.entertainmentnewz.R
 import com.rahul.entertainmentnewz.domain.model.ChannelListItem
+import com.rahul.entertainmentnewz.ui.theme.spacing
+import com.rahul.entertainmentnewz.utils.Constant.ONE_F
 
 @Composable
 fun ChannelItem(channelListItem: ChannelListItem, onClick: (ChannelListItem) -> Unit) {
@@ -32,11 +34,11 @@ fun ChannelItem(channelListItem: ChannelListItem, onClick: (ChannelListItem) -> 
         horizontalArrangement = Arrangement.Center
     ) {
 
-        Card(elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+        Card(elevation = CardDefaults.cardElevation(defaultElevation = spacing.eight_dp),
             modifier = Modifier
-                .padding(4.dp)
-                .testTag("channelItem")
-                .fillMaxWidth(1f)
+                .padding(spacing.four_dp)
+                .testTag(stringResource(R.string.channel_item))
+                .fillMaxWidth(ONE_F)
                 .clickable {
                     onClick.invoke(channelListItem)
                 }) {
@@ -53,18 +55,19 @@ fun ChannelItem(channelListItem: ChannelListItem, onClick: (ChannelListItem) -> 
                     error = painterResource(id = R.drawable.ic_error),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(250.dp)
-                        .testTag("channelImage"),
+                        .height(spacing.twoFifty_dp)
+                        .testTag(stringResource(R.string.channel_image)),
                     contentScale = ContentScale.FillWidth
                 )
 
                 Text(
                     text = channelListItem.title!!,
-                    modifier = Modifier.padding(8.dp).
-                    testTag("channelTitle"),
+                    modifier = Modifier
+                        .padding(spacing.eight_dp)
+                        .testTag(stringResource(R.string.channel_title)),
                     fontWeight = FontWeight.Bold
                 )
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(spacing.ten_dp))
             }
         }
     }
