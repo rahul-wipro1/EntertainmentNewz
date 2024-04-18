@@ -3,6 +3,7 @@ package com.rahul.entertainmentnewz.di
 import com.rahul.entertainmentnewz.data.datasource.NetworkApi
 import com.rahul.entertainmentnewz.data.repository.ChannelRepositoryImpl
 import com.rahul.entertainmentnewz.domain.repository.ChannelRepository
+import com.rahul.entertainmentnewz.domain.usecase.ChannelListUseCase
 import com.rahul.entertainmentnewz.utils.Constant.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -30,5 +31,11 @@ object ChannelModule {
     @Singleton
     fun provideChannelRepository(networkApi: NetworkApi): ChannelRepository {
         return ChannelRepositoryImpl(networkApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideChannelListUseCase(channelRepository: ChannelRepository): ChannelListUseCase {
+        return  ChannelListUseCase(channelRepository)
     }
 }
