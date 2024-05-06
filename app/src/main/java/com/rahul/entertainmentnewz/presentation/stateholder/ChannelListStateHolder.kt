@@ -6,7 +6,7 @@ import com.rahul.entertainmentnewz.domain.model.ChannelListItem
  * and channelList and error message in viewModel
  */
 data class ChannelListStateHolder(
-    var isLoading: Boolean = false,
+    var isLoading: Boolean? = null,
     var channelListItem: List<ChannelListItem>? = emptyList(),
-    var error: String = "",
+    var error: String? = null,
 )

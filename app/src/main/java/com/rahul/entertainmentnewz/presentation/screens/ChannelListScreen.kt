@@ -32,16 +32,14 @@ fun ChannelListScreen(
 ) {
     val result by viewModelItem.channelListState.collectAsState()
 
-    if (result.isLoading) {
+    result.isLoading?.let {
         ShowLoading()
     }
-
-    if (result.channelListItem != null) {
+    result.channelListItem?.let {
         DisplayTheContent(result.channelListItem!!, navController)
     }
-
-    if (result.error.isNotBlank()) {
-        ShowError(result.error)
+    result.error?.let {
+        ShowError(result.error!!)
     }
 }
 
